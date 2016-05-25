@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="Client.UserControls.NewGroup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="298" d:DesignWidth="309">
+    <Grid>
+        <ListBox Height="220" HorizontalAlignment="Left" Margin="147,46,0,0" Name="usersBox" SelectionMode="Multiple" VerticalAlignment="Top" Width="120" />
+        <Label Content="בחר משתמשים" Height="28" HorizontalAlignment="Left" Margin="177,12,0,0" Name="usersLabel" VerticalAlignment="Top" />
+        <Label Content="בחר שם" Height="28" HorizontalAlignment="Left" Margin="88,12,0,0" Name="name" VerticalAlignment="Top" />
+        <TextBox Height="23" HorizontalAlignment="Left" Margin="21,46,0,0" Name="UserGrouptextBox" VerticalAlignment="Top" Width="120" />
+        <Button Content="צור" Height="23" HorizontalAlignment="Left" Margin="32,243,0,0" Name="button1" VerticalAlignment="Top" Width="75" Click="button1_Click" />
+    </Grid>
+</UserControl>
