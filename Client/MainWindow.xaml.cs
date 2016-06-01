@@ -21,9 +21,8 @@ namespace Client
     {
 
         #region Fields
-
-        bool flag;
-        bool flagGroups;
+        string user = "";
+        bool flag,flagGroups;
         Network network;
 
         #endregion
@@ -85,13 +84,19 @@ namespace Client
             network.SendMessages(groupNameBytes);
         }
 
+        private void SendMessage (object sender, RoutedEventArgs e)
+        {
+            string message = Convert.ToString((int)Network.eNetworkCommands.Messages)+" "+this.ucChat.LastMessage;
+            network.SendMessages(Encoding.ASCII.GetBytes(message));
+        }
+
         #endregion
 
         #region Private Methods
 
         private void NewConnection(string mess)
         {
-            string user;
+            
             if (mess == Convert.ToString((int)Network.eNetworkCommands.Error) && !flag)
             {
                 flag = true;
@@ -143,10 +148,20 @@ namespace Client
             }
             else if (mess[0].ToString() == Convert.ToString((int)Network.eNetworkCommands.Messages))
             {
+                this.HideAllUserControl();
+                this.ChangeVisibility(this.ucChat, () => this.ucChat.Visibility = Visibility.Visible);
+                MessageBox.Show("whelcome, you can shat now");
+                this.ucChat.Sender = this.user;
                 mess = mess.Substring(2);
                 string[] messArr = mess.Split(';');
-                this.ucChat.Messages = messArr;
+                this.ucChat.SetMessages(messArr);
+                this.ucChat.ShowOldMessages();
             }
+            else if (mess[0].ToString() == Convert.ToString((int)Network.eNetworkCommands.ChatMessage))
+            {
+                    ucChat.AddMessage(mess.Substring(1));
+            }
+
         }
 
         private void HideAllUserControl()

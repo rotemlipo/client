@@ -31,7 +31,8 @@ namespace Client
             UserGroupsCommand = 5,
             ErrorGroup = 6,
             GroupIsOK = 7,
-            Messages = 8
+            Messages = 8,
+            ChatMessage = 9
         }
 
         #endregion
@@ -58,7 +59,11 @@ namespace Client
 
             Task.Factory.StartNew(Run);
         }
-
+        ~Network()
+        {
+            this.client.Close();
+            this.client = null;
+        }
         #endregion
 
         #region Events

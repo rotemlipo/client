@@ -21,7 +21,7 @@ namespace Client
             {
                 try
                 {
-                    var network = new Network();
+                    Network network = new Network();
                     serverisUp = true;
                 }
                 catch { }
@@ -42,6 +42,5 @@ namespace Client
             else
                 this.Shutdown(1);
         }
-
     }
-}
+    }

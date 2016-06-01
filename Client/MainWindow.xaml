@@ -27,7 +27,8 @@
                                    ChosingGroup="ChooseGroup"/>
         <userControls:Chat x:Name="ucChat"
                            Grid.Row="0"
-                           Visibility="Collapsed"/>
+                           Visibility="Collapsed"
+                           SendMessageButtonClick="SendMessage"/>
         <userControls:NewGroup x:Name="ucNewGroup"
                                Grid.Row="0"
                                Visibility="Collapsed"
