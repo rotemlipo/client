@@ -19,17 +19,24 @@ namespace Client.UserControls
     /// </summary>
     public partial class ChatRoomList : UserControl
     {
+
+        //fields
         string chosenGroup;
-        public event RoutedEventHandler ChosingGroup;
+        public event RoutedEventHandler ChosingGroup;//event
+        
+        //constructor
         public ChatRoomList()
         {
             InitializeComponent();
         }
+
+        //chosen group getter
         public string ChosenGroup
         {
             get { return this.chosenGroup; }
         }
 
+        //adding the user's groups (list of group names) to the combobox using invoking
         public void AddItems(string[] list)
         {
             this.groupBox.Dispatcher.Invoke((Action)(() =>
@@ -39,6 +46,7 @@ namespace Client.UserControls
             }));
         }
 
+        //the user chose a group, now we send it back to the server through the main window
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             chosenGroup = groupBox.SelectedItem.ToString();
@@ -50,10 +58,6 @@ namespace Client.UserControls
 
         }
 
-        private void comboBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
 
 
     }

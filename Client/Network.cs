@@ -53,17 +53,13 @@ namespace Client
         public Network()
         {
             IPEndPoint ep = new IPEndPoint(IPAddress.Parse(SERVER_ADDRESS), SERVER_PORT); // endpoint where server is listening
-            this.client = new TcpClient();
+            this.client = new TcpClient(); 
             this.client.Connect(ep);
             this.ShowOutPut(this.client.Client.AddressFamily.ToString());
 
             Task.Factory.StartNew(Run);
         }
-        ~Network()
-        {
-            this.client.Close();
-            this.client = null;
-        }
+       
         #endregion
 
         #region Events
@@ -81,15 +77,14 @@ namespace Client
         public void SendMessages(byte[] mess)
         {
             //tacking data from window and sending to client
-
             try { this.client.Client.Send(mess); }
             catch { }
         }
-
         #endregion
 
         #region Private Methods
 
+        //recieving data from server
         private void Run()
         {
             while (true)
@@ -108,6 +103,7 @@ namespace Client
             }
         }
 
+        //calling NewConnection method (from MainWindow) by an event
         private void ShowOutPut(string output)
         {
             var handler = this.NewConnection;

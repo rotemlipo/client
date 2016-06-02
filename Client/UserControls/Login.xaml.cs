@@ -19,21 +19,31 @@ namespace Client.UserControls
     /// </summary>
     public partial class Login : UserControl
     {
+        //fields
         private string username;
         private byte[] userDetails;
+
+        //constructor
         public Login()
         {
             InitializeComponent();
         }
+
+        //details (string type) getter
         public string Details
         {
             get { return this.username; }
         }
+
+        //details (bytes array) getter
         public byte[] UserDetails
         {
             get { return this.userDetails; }
         }
-        public event RoutedEventHandler LogInButtonClick;
+
+        public event RoutedEventHandler LogInButtonClick; //event
+
+        //sending the details that the user typed in to the server through the main window
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             e.Handled = true;

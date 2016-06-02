@@ -19,24 +19,33 @@ namespace Client.UserControls
     /// </summary>
     public partial class NewGroup : UserControl
     {
+        //constructor
         public NewGroup()
         {
             InitializeComponent();
         }
 
-        public void Init(List<string> users)
+        //adding the usernames to the listbox. we dont add the user itself - he shouldnt pick himself. we use invoking.
+        public void Init(List<string> users,string user)
         {
-            this.usersBox.Dispatcher.Invoke((Action)(() => users.ForEach(x => this.usersBox.Items.Add(x))));
+            foreach (var item in users)
+            {
+                if (item != user)
+                    this.usersBox.Dispatcher.Invoke((Action)(() => users.ForEach(x => this.usersBox.Items.Add(x))));
+            }
+            
         }
 
-        public event RoutedEventHandler NewGroupButtonClick;
+        public event RoutedEventHandler NewGroupButtonClick; //event
+        
+        //sending the server new group's details through the main window
         private void button1_Click(object sender, RoutedEventArgs e)
         {
             if (NewGroupButtonClick != null)
                 NewGroupButtonClick(this, new RoutedEventArgs());
         }
 
-
+        //returning all the users that are chosen
         public List<string> UserList
         {
             get
@@ -49,6 +58,13 @@ namespace Client.UserControls
             }
         }
 
-        public string GroupName { get { return UserGrouptextBox.Text; } }
+        //returning the group's name
+        public string GroupName 
+        { 
+            get 
+            { 
+                return UserGrouptextBox.Text; 
+            } 
+        }
     }
 }

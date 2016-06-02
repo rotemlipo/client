@@ -12,7 +12,9 @@ namespace Client
     /// </summary>
     public partial class App : Application
     {
+        Network network;
 
+        //checking if the server is up and if it doesnt showing a suitable messagebox
         protected override void OnStartup(StartupEventArgs e)
         {
             bool serverisUp = false;
@@ -21,7 +23,7 @@ namespace Client
             {
                 try
                 {
-                    Network network = new Network();
+                    network = new Network();
                     serverisUp = true;
                 }
                 catch { }
@@ -41,6 +43,8 @@ namespace Client
             }
             else
                 this.Shutdown(1);
+            
         }
+
     }
-    }
+}
