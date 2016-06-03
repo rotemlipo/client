@@ -48,10 +48,10 @@ namespace Client.UserControls
 
         //the user chose a group, now we send it back to the server through the main window
         private void button1_Click(object sender, RoutedEventArgs e)
-        {
-            chosenGroup = groupBox.SelectedItem.ToString();
-            while (chosenGroup == null)
+        {                
+            while (groupBox.SelectedItem == null)
                 MessageBox.Show("please pick a group");
+            chosenGroup = groupBox.SelectedItem.ToString();
             if (ChosingGroup != null)
                 ChosingGroup(this, new RoutedEventArgs());
 

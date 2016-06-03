@@ -8,6 +8,8 @@ using System.Net;
 using System.Diagnostics;
 using System.Windows.Threading;
 using System.Threading.Tasks;
+using System.Configuration;
+using log4net;
 
 namespace Client
 {
@@ -40,8 +42,10 @@ namespace Client
         #region Fields
 
         private TcpClient client;
-        private string SERVER_ADDRESS = "127.0.0.1";
+        private string serverAddress;
         private int SERVER_PORT = 8870;
+
+        ILog log = LogManager.GetLogger(typeof(Network));
 
         #endregion
 
@@ -52,7 +56,10 @@ namespace Client
         /// </summary>
         public Network()
         {
-            IPEndPoint ep = new IPEndPoint(IPAddress.Parse(SERVER_ADDRESS), SERVER_PORT); // endpoint where server is listening
+            // read the ip address of the server from app.config
+            serverAddress =  ConfigurationManager.AppSettings["ServerIp"];
+            log.Debug("Connecting to server Ip Adddress = :" + serverAddress);
+            IPEndPoint ep = new IPEndPoint(IPAddress.Parse(serverAddress), SERVER_PORT); // endpoint where server is listening
             this.client = new TcpClient(); 
             this.client.Connect(ep);
             this.ShowOutPut(this.client.Client.AddressFamily.ToString());
@@ -78,7 +85,9 @@ namespace Client
         {
             //tacking data from window and sending to client
             try { this.client.Client.Send(mess); }
-            catch { }
+            catch {
+                log.Error("Error sending package To Server");
+            }
         }
         #endregion
 

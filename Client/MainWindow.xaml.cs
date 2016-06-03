@@ -12,6 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+[assembly: log4net.Config.XmlConfigurator(Watch = true)]
+
 namespace Client
 {
     /// <summary>
@@ -33,7 +35,6 @@ namespace Client
         public MainWindow()
         {
             InitializeComponent();
-
             this.flag = false;
             this.ucLogin.Visibility = Visibility.Visible;
             this.btnNewUser.Visibility = Visibility.Visible; //showing login user control and new user button 
@@ -164,6 +165,7 @@ namespace Client
                 MessageBox.Show("welcome, you can chat now");
                 this.HideAllUserControl();
                 this.ChangeVisibility(this.ucChat, () => this.ucChat.Visibility = Visibility.Visible);
+                this.ucChat.Sender = user;
             }
 
             //connecting to a existing group - getting all the previous messages in this chatgroup, showing the chat user control and the previous messages.

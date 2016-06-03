@@ -31,7 +31,7 @@ namespace Client.UserControls
             foreach (var item in users)
             {
                 if (item != user)
-                    this.usersBox.Dispatcher.Invoke((Action)(() => users.ForEach(x => this.usersBox.Items.Add(x))));
+                    this.usersBox.Dispatcher.Invoke((Action)(() => this.usersBox.Items.Add(item)));
             }
             
         }
