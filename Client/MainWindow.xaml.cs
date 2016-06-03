@@ -25,7 +25,7 @@ namespace Client
         #region Fields
 
         string user = "";
-        bool flag,flagGroups;
+        bool flag;
         Network network;
 
         #endregion
@@ -40,7 +40,7 @@ namespace Client
             this.btnNewUser.Visibility = Visibility.Visible; //showing login user control and new user button 
             this.network = new Network();
             this.network.NewConnection += NewConnection; //adding the method NewConnection to the event
-            this.flagGroups = false;
+       
         }
 
         #endregion
